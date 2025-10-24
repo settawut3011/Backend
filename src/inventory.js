@@ -25,7 +25,29 @@ function nameproduct(name) {
   return { id, name };
 }
 
+// สำหรับค้นหาแค่ตัวแปลในอาเรย์แบบเจาะจง
+// function updatedata(id,name) {
+//    const y = listProduct[].find(({ id }) => {
+//       return id === Number(x);
+//     });
+
+// อัปเดตข้อมูลสินค้า โดยหาสินค้าที่มีidที่userกำหนดและอัปเดตnameข้อมูลของสินค้านั้น
+function updatedata(id, name) {
+  const x = listProduct.findIndex((product) => {
+    return Number(id) === product.id;
+  });
+
+  if (x !== -1) {
+    const y = { id, name };
+    listProduct.splice(x, 1, y); //x = ลำดับข้อมูลที่จะอัปเดต , 1 = จำนวนข้อมูลที่จะอัปเดต , y = { id, name } แทนที่ลำดับข้อมูลที่กำหนดไว้ นั้นคือxของเรา
+    return y;
+  } else {
+    return null;
+  }
+}
+
 module.exports = {
   listProduct,
   nameproduct,
+  updatedata,
 };

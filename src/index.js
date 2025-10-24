@@ -2,7 +2,15 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const inventory = require("./inventory.js");
+
 app.use(express.urlencoded());
+app.put("/listProduct/:id", (req, res) => {
+  const updateId = req.params.id;
+  const updateName = req.body.name;
+  const updatedProduct = inventory.updatedata(updateId, updateName);
+  res.send(updatedProduct);
+});
+
 app.post("/listProduct", (req, res) => {
   const newproduct = inventory.nameproduct(req.body.name);
 
